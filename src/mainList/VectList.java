@@ -1,10 +1,13 @@
 package mainList;
 
+import java.util.List;
+
 public class VectList {
 	private String nome, email;
-	private int contato,id;
+	private int contato;
+	List<Integer> id;
 	
-	public VectList (int id,String nome, int contato, String email) {
+	public VectList (List<Integer> id,String nome, int contato, String email) {
 		this.nome = nome;
 		this.contato = contato;
 		this.email = email;
@@ -35,15 +38,15 @@ public class VectList {
 		this.contato = contato;
 	}
 
-	public int getId() {
+	public List<Integer> getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(List<Integer> id) {
 		this.id = id;
 	}
 
-	public String toString () {
-		return "ID: "+id +"\nNome: "+ nome +"\nTelefone/Contato: "+ contato+"\nE-mail: " + email;
+	public String toString() {
+		return "\nNome: " + getNome() + "\nTelefone/Contato: " + getContato() + "\nE-mail: " + getEmail() + "\n";
 	}
 }
