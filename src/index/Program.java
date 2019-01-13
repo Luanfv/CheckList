@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-
 import mainList.VectList;
 
 public class Program {
@@ -15,15 +14,12 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		List <String> nomes = new ArrayList<>();
-		List <String> emails = new ArrayList<>();
-		List <String> contatos = new ArrayList<>();
-		VectList lista;
+		VectList informacao;
+		List<VectList> lista = new ArrayList<>();
 		byte opcao;
-		int i = 0;
 		
 		do {
-			System.out.println(nomes.size() + " Cadastros");
+			System.out.println(lista.size() + " Cadastros");
 			byte opcao2;
 			System.out.println("Escolha a opcao desejavel:");
 			System.out.println("1 - Cadastrar usuarios\n2 - Procurar usuario por ID\n3 - Mostra todos cadastros");
@@ -39,22 +35,18 @@ public class Program {
 					String email = sc.nextLine();
 					System.out.println("Contato: ");
 					String contato = sc.nextLine();
-					
-					lista = new VectList(nome, contato, email);
-					nomes.add(nome);
-					emails.add(email);
-					contatos.add(contato);
+					informacao = new VectList(nome, contato, email);
+					lista.add(informacao);
 					
 					System.out.println();
-					System.out.println("ID: " + i + "\nNome: " + lista.getNome() + "\nE-mail: " + lista.getEmail() + "\nContato: " + lista.getContato());
+					System.out.println("ID: " + lista.size() + "\nNome: " + informacao.getNome() + "\nE-mail: " + informacao.getEmail() + "\nContato: " + informacao.getContato());
 					System.out.println();
 					
 					System.out.println("Deseja informar outra cadastro a lista");
 					System.out.println("0 - Nao");
 					System.out.println("1 - Sim");
 					opcao2 = sc.nextByte();
-					
-					i++;
+
 					System.out.println();
 				}while (opcao2 == 1);
 			}
@@ -65,7 +57,7 @@ public class Program {
 					int id = sc.nextInt();
 					
 					if (id != -1)
-						System.out.println("\nNome: " + nomes.get(id) + "\nE-mail: " + emails.get(id) + "\nContato: " + contatos.get(id) + "\n");
+						System.out.println("\nNome: " + lista.get(id).getNome() + "\nE-mail: " + lista.get(id).getEmail() + "\nContato: " + lista.get(id).getContato() + "%n");
 					else
 						System.out.println("ID invalido");
 					
@@ -81,8 +73,8 @@ public class Program {
 			
 			else if (opcao == 3) {
 				System.out.println();
-				for (int j = 0; j<nomes.size(); j++) {
-					System.out.println("Nome: " + nomes.get(j) + "\nE-mail: " + emails.get(j) + "\nContato: " + contatos.get(j));
+				for (int i = 0; i < lista.size(); i++) {
+					System.out.println("\nNome: " + lista.get(i).getNome() + "\nE-mail: " + lista.get(i).getEmail() + "\nContato: " + lista.get(i).getContato());
 					System.out.println();
 				}
 			}
@@ -94,6 +86,4 @@ public class Program {
 		
 		sc.close();
 	}
-	
-
 }
